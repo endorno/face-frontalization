@@ -3,8 +3,10 @@ __author__ = 'Douglas'
 import dlib
 import os
 import numpy as np
+from dorpy.utils.data_util import get_file
 
 this_path = os.path.dirname(__file__)
+
 
 def _shape_to_np(shape):
     xy = []
@@ -17,7 +19,14 @@ def _shape_to_np(shape):
 def get_landmarks(img):
     # if not automatically downloaded, get it from:
     # http://sourceforge.net/projects/dclib/files/dlib/v18.10/shape_predictor_68_face_landmarks.dat.bz2
-    predictor_path = this_path + "/dlib_models/shape_predictor_68_face_landmarks.dat"
+
+    predictor_path = get_file(
+        'shape_predictor_68_face_landmarks.dat',
+        'http://sourceforge.net/projects/dclib/files/dlib/v18.10/shape_predictor_68_face_landmarks.dat.bz2',
+        '677a91476056de0507f1915adc7ef86a',
+        'bz2',
+        'dlib_models'
+    )
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(predictor_path)
 
