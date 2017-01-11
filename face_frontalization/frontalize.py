@@ -84,7 +84,7 @@ def frontalize(img, proj_matrix, ref_U, eyemask):
     frontal_raw = frontal_raw.reshape((320, 320, 3), order='F')
 
     # which side has more occlusions?
-    midcolumn = np.round(ref_U.shape[1] / 2)
+    midcolumn = int(np.round(ref_U.shape[1] / 2))
     sumaccs = synth_frontal_acc.sum(axis=0)
     sum_left = sumaccs[0:midcolumn].sum()
     sum_right = sumaccs[midcolumn + 1:].sum()
