@@ -125,5 +125,9 @@ def frontalize(img, proj_matrix, ref_U, eyemask):
         frontal_sym[frontal_sym < 0] = 0
         frontal_sym = frontal_sym.astype('uint8')
     else:  # both sides are occluded pretty much to the same extent -- do not use symmetry
+        frontal_raw[frontal_raw > 255] = 255
+        frontal_raw[frontal_raw < 0] = 0
+        frontal_raw = frontal_raw.astype('uint8')
+
         frontal_sym = frontal_raw
     return frontal_raw, frontal_sym
